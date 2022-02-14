@@ -1,14 +1,16 @@
 package cop2805;
 
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
-public class Homework_5 {
+
+public class Homework_5 extends JFrame {
 
     public static void main(String[] args) {
-        String str1 = JOptionPane.showInputDialog("Enter first number");
-        String str2 = JOptionPane.showInputDialog("Enter Second number");
 
-        int num1 = Integer.parseInt(str1);
-        int num2 = Integer.parseInt(str2);
+        Frame frame = new Frame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500,200);
+        frame.setVisible(true);
     }
 }
