@@ -2,7 +2,18 @@ package cop2805;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Homework 5
+ * Class: COP 2805C Advanced Java Programming <br/>
+ * Instructor: Brian Williamson <br/>
+ * Description: Building Simple GUI Calculator<br/>
+ * Due: 2/20/2022
+ * @Author: Johanna I. Scharbaai-Emilien
+ * I pledge that I have completed the programming assignment independently. <br />
+ * I have not copied the code from a student or any source. <br />
+ * I have not given my code to any student. <br />
+ * Sign here: ___Johanna I. Scharbaai-Emilien_______ <br />
+ */
 public class Homework_5 {
 
     private static String str1;
@@ -37,7 +48,7 @@ public class Homework_5 {
 
 
         // Second Row (Second Number)
-        JLabel sNum = new JLabel("First Number: ");
+        JLabel sNum = new JLabel("Second Number: ");
         frame.add(sNum);
         JTextField text2 = new JTextField();
         frame.add(text2);
@@ -46,7 +57,7 @@ public class Homework_5 {
         // Third Row (Combo Box)
         frame.add(new JLabel());            // Empty frame
         String[] operators = { "Add", "Subtract", "Multiply", "Divide" };  // Start of JComboBox
-        JComboBox cb = new JComboBox(operators);
+        JComboBox<String> cb = new JComboBox<>(operators);
         cb.setSelectedIndex(0);
         System.out.println(cb.getSelectedItem());
         frame.add(cb);
