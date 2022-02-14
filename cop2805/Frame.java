@@ -15,6 +15,8 @@ public class Frame extends JFrame{
         item1 = new JLabel("This is a sentence");
         item1.setToolTipText("This gonna show up on hover");
         add(item1);
+
+
     }
 
 }
