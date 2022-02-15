@@ -19,7 +19,7 @@ import java.awt.event.*;
 public class Homework_5 {
 
     private static JTextField value1, value2;
-    private static JComboBox cb;
+    private static JComboBox<String> cb;
     private static int choice;
     private static double num1, num2, result;
 
@@ -47,14 +47,14 @@ public class Homework_5 {
         // First Row (First Number) components
         JLabel fNum = new JLabel("First Number: ");
         frame.add(fNum);
-        value1 = new JTextField("0", 5);
+        value1 = new JTextField("0.0", 5);
         value1.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 try {
                     num1 = Double.parseDouble(value1.getText());
                 } catch (NumberFormatException nfe){
-                    value1.setText("0");
+                    value1.setText("0.0");
                 }
             }
 
@@ -68,14 +68,14 @@ public class Homework_5 {
         // Second Row (Second Number)
         JLabel sNum = new JLabel("Second Number: ");
         frame.add(sNum);
-        value2 = new JTextField("0", 5);
+        value2 = new JTextField("0.0", 5);
         value2.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent event) {
                 try {
                     num2 = Double.parseDouble(value2.getText());
                 } catch (NumberFormatException nfe){
-                    value2.setText("0");
+                    value2.setText("0.0");
                 }
             }
 
@@ -93,19 +93,19 @@ public class Homework_5 {
         cb.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent event) {
-                choice = cb.getSelectedIndex();
-                cb.setSelectedIndex(choice);
+                if(event.getStateChange() == ItemEvent.SELECTED ) {
+                    choice = cb.getSelectedIndex();
+                }
             }
         });
-
         frame.add(cb);
-
 
         // Fourth Row (Calculate Button)
         frame.add(new JLabel());            // Empty frame
         JDialog.setDefaultLookAndFeelDecorated(true);
         JButton button = new JButton("Calculate");
         frame.add(button);
+
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -124,13 +124,13 @@ public class Homework_5 {
                         break;
                     default:
                 }
+                System.out.println(result);
             }
         });
         frame.getContentPane().add(button);
 
         // Fifth Row (Result)
-        result = 0;
-        frame.add(new JLabel("Result:  " + result));    // Empty frame
+        frame.add(new JLabel("Result:  "));
 
         // Set width & height of box
         frame.setSize(300,150);
@@ -146,7 +146,7 @@ public class Homework_5 {
                     "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"
             );
         } catch (Exception exc) {
-           System.out.println(exc.getMessage());
+           //System.out.println(exc.getMessage());
         }
 
     }
