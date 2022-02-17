@@ -21,7 +21,8 @@ public class Homework_5 {
     private static JTextField value1, value2;
     private static JComboBox<String> cb;
     private static int choice;
-    private static double num1, num2, result = 0.0;
+    private static double num1, num2, result;
+    private static JLabel lLabel;
 
     public static void main(String[] args) {
         // Creates special thread to handle events with the GUI
@@ -36,7 +37,9 @@ public class Homework_5 {
     }
 
     private static void constructGUI(){
+        // GUI Components
         JFrame.setDefaultLookAndFeelDecorated(true);
+        // Instance of a JFrame
         JFrame frame = new JFrame();
         // Set the title
         frame.setTitle("Simple Calculator");
@@ -44,6 +47,11 @@ public class Homework_5 {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Create a grid, sets the columns and rows
         frame.setLayout(new GridLayout(5, 2));
+        // Set point box will appear within the screen
+        frame.setBounds(500, 400, 300, 150);
+        // Set width & height of box
+        frame.setSize(300,150);
+        frame.getContentPane();
         
         // First Row (First Number) components
         // First Label for 'First Number'
@@ -51,11 +59,12 @@ public class Homework_5 {
         frame.add(fNum);
         // Value Text field
         value1 = new JTextField();
-        // Setting Focus listener
+        // Setting Focus listener to obtain first item
         value1.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 try {
+                    // Convert from String to double
                     num1 = Double.parseDouble(value1.getText());
                 } catch (NumberFormatException nfe){
                     value1.setText("");
@@ -63,7 +72,6 @@ public class Homework_5 {
             }
             @Override
             public void focusLost(FocusEvent event) {
-
                 focusGained(event);
             }
         });
@@ -80,6 +88,7 @@ public class Homework_5 {
             @Override
             public void focusGained(FocusEvent event) {
                 try {
+                    // From String to double
                     num2 = Double.parseDouble(value2.getText());
                 } catch (NumberFormatException nfe){
                     value2.setText("");
@@ -87,7 +96,6 @@ public class Homework_5 {
             }
             @Override
             public void focusLost(FocusEvent event) {
-
                 focusGained(event);
             }
         });
@@ -98,8 +106,9 @@ public class Homework_5 {
         frame.add(new JLabel());
         // Array for combo box values
         String[] operators = { "Add", "Subtract", "Multiply", "Divide" };  // Start of JComboBox
-        cb = new JComboBox<>(operators);    // creation of combo box
-        // Default is set to adding (index 0)
+        // creation of combo box
+        cb = new JComboBox<>(operators);
+        // Default operation is set to 'Add' at index 0
         cb.setSelectedIndex(0);
         // Setting item listener for combo box
         cb.addItemListener(new ItemListener() {
@@ -123,7 +132,7 @@ public class Homework_5 {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                // The switch statement
+                // The switch statement for operations
                 switch (choice) {   // choice = index in the array from 0 to 3
                     case 0:
                         // addition
@@ -144,19 +153,18 @@ public class Homework_5 {
                     default:
                 }
                 // Check calculator results in the console
-                System.out.println(result);
+                //System.out.println(result);
+                // Updated label with the result
+                lLabel.setText("Result: " + result);
             }
         });
         // Set pane background color
-        frame.getContentPane().setBackground(Color.cyan);
+
 
         // Fifth and last Row (Result)
-        frame.add(new JLabel("Result: " + result));
+        lLabel = new JLabel("Result: ");
+        frame.add(lLabel);
 
-        // Set width & height of box
-        frame.setSize(300,150);
-        // Set point relative to screen
-        frame.setBounds(500, 400, 300, 150);
         frame.setVisible(true);
     }
 
@@ -166,7 +174,7 @@ public class Homework_5 {
                     "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"
             );
         } catch (Exception exc) {
-           //System.out.println(exc.getMessage());
+           System.out.println(exc.getMessage());
         }
     }
 }
